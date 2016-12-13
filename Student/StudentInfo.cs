@@ -18,6 +18,8 @@ namespace Student
         {
             InitializeComponent();
             _Student = _S;
+            this.txt_Id.Text = _Student.Id.ToString();
+            this.txt_Name.Text = _Student.Name;
         }
 
         public StudentInfo(int id)
@@ -29,6 +31,11 @@ namespace Student
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SaveMethod();
+        }
+
+        private void SaveMethod()
+        {
             _Student.Name = txt_Name.Text;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
@@ -36,6 +43,12 @@ namespace Student
         private void button2_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void txt_Name_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                SaveMethod();
         }
     }
 }

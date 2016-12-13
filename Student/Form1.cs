@@ -34,18 +34,33 @@ namespace Student
             studentBindingSource.DataSource = StudentList;
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             StudentInfo _AddStudent = new StudentInfo(StudentList.Max(x => x.Id) + 1);
             if (_AddStudent.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 studentBindingSource.Add(_AddStudent._Student);
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             StudentInfo _AddStudent = new StudentInfo((Student)studentBindingSource.Current);
             if (_AddStudent.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 studentBindingSource[studentBindingSource.Position] = _AddStudent._Student;
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            studentBindingSource.RemoveCurrent();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void findToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 
