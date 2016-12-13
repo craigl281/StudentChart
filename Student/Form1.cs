@@ -55,7 +55,7 @@ namespace Student
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            CloseProgram();
         }
 
         private void findToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,6 +63,21 @@ namespace Student
 
         }
 
+        void CloseProgram()
+        {
+            SaveData();
+            this.Close();
+        }
 
+        void SaveData()
+        {
+            ///First lets alpha sort our contacts list.  Or we can sort by something else if wanted
+            //StudentList.Sort((l, r) => l * l.Name.CompareTo(r.Name));
+            ///Create a Json text representation with indents for easy reading.  Of our list of objects
+            var File = JsonConvert.SerializeObject(StudentList, Formatting.Indented);
+            ///Write that text into a file
+            ///I could always error handle for permissions
+            System.IO.File.WriteAllText(@"C:\Student.txt", File);
+        }
     }
 }
